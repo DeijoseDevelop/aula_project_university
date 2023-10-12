@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\Deiver Vasquez\\Downloads\\aspose-cells-23.9.jar"
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
+}
