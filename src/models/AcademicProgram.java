@@ -2,7 +2,6 @@ package src.models;
 
 import java.util.Map;
 
-import src.constants.Constants;
 import src.interfaces.DataModel;
 
 public class AcademicProgram implements DataModel{
