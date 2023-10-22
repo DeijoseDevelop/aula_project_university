@@ -1,7 +1,0 @@
-{
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "c:\\Users\\user Name\\Route\\aspose-cells-23.9.jar"
-    ],
-    "java.debug.settings.onBuildFailureProceed": true
-}
