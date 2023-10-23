@@ -17,8 +17,9 @@ public class ExcelWriter extends ExcelFile {
     }
 
     public void writeData(Map<String, String> obj) {
+        int maxRow = this.getCantRows() + 1;
         for (int i = 0; i < this.headers.size(); i++) {
-            Cell cell = this.cells.get(this.getCantRows() + 1, i);
+            Cell cell = this.cells.get(maxRow, i);
             String header = this.headers.get(i);
 
             cell.setValue(obj.get(header).toString());
