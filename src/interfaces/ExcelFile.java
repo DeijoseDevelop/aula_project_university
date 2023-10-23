@@ -4,19 +4,24 @@ import java.util.*;
 import com.aspose.cells.*;
 
 public class ExcelFile {
+    protected String filePath;
     protected Workbook workbook;
     protected WorksheetCollection collection;
     protected Worksheet worksheet;
     protected Cells cells;
-    protected List<String> headers;
+    protected Map<Integer, String> headers;
+    protected Map<String, Integer> reversedHeaders;
 
     public ExcelFile(String filePath) {
         try {
+            this.filePath = filePath;
             this.workbook = new Workbook(filePath);
             this.collection = this.workbook.getWorksheets();
             this.worksheet = this.collection.get(0);
             this.cells = this.worksheet.getCells();
             this.headers = this.setHeaders();
+            this.reversedHeaders = this.setReversedHeaders();
+            this.deleteAdditionalWorksheets();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -24,26 +29,40 @@ public class ExcelFile {
 
     public ExcelFile(String filePath, int worksheetIndex) {
         try {
+            this.filePath = filePath;
             this.workbook = new Workbook(filePath);
             this.collection = this.workbook.getWorksheets();
             this.worksheet = this.collection.get(worksheetIndex);
             this.cells = this.worksheet.getCells();
             this.headers = this.setHeaders();
+            this.deleteAdditionalWorksheets();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    protected List<String> setHeaders() {
-        List<String> headers = new ArrayList<String>();
+    protected Map<Integer, String> setHeaders() {
+        Map<Integer, String> headers = new TreeMap<Integer, String>();
         for (int i = 0; i <= this.getCantColumns(); i++) {
-            headers.add(this.cells.get(0, i).getStringValue());
+            headers.put(i, this.cells.get(0, i).getStringValue());
         }
         return headers;
     }
 
-    public List<String> getHeaders() {
+    protected Map<String, Integer> setReversedHeaders() {
+        Map<String, Integer> headers = new TreeMap<String, Integer>();
+        for (int i = 0; i <= this.getCantColumns(); i++) {
+            headers.put(this.cells.get(0, i).getStringValue(), i);
+        }
+        return headers;
+    }
+
+    public Map<Integer, String> getHeaders() {
         return this.headers;
+    }
+
+    public Map<String, Integer> getReversedHeaders() {
+        return reversedHeaders;
     }
 
     public int getCantRows() {
@@ -52,5 +71,11 @@ public class ExcelFile {
 
     public int getCantColumns() {
         return this.cells.getMaxDataColumn();
+    }
+
+    protected void deleteAdditionalWorksheets() {
+        for (int i = 1; i < this.workbook.getWorksheets().getCount(); i++) {
+            workbook.getWorksheets().removeAt(i);
+        }
     }
 }

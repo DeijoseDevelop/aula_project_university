@@ -2,6 +2,7 @@ import java.util.*;
 
 import src.models.*;
 import src.utils.ExcelReader;
+import src.utils.ExcelWriter;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,6 +16,7 @@ public class Main {
         for (Map<String, String> json : excelReaderStudents.getJsonData()) {
             students.add(Student.fromJson(json));
         }
+
         System.out.println(students);
 
         System.out.println("");
@@ -26,6 +28,20 @@ public class Main {
         System.out.println(academicOffert);
 
         System.out.println("");
+
+        ExcelWriter excelWriter = new ExcelWriter("src/data/students.xlsx");
+
+        for (Map<String, String> json : excelReaderStudents.getJsonData()) {
+            excelWriter.writeData(json);
+        }
+
+        System.out.println("");
+
+        for (Map<String, String> json : excelReaderStudents.getJsonData()) {
+            students.add(Student.fromJson(json));
+        }
+        System.out.println(students);
+
+        System.out.println("");
     }
 }
-

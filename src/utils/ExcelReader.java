@@ -2,6 +2,8 @@ package src.utils;
 
 import java.util.*;
 
+import com.aspose.cells.*;
+
 import src.interfaces.ExcelFile;
 
 public class ExcelReader extends ExcelFile {
@@ -23,12 +25,21 @@ public class ExcelReader extends ExcelFile {
 
     public List<Map<String, String>> toJson() {
         List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+
         for (int i = 1; i <= this.getCantRows(); i++) {
             Map<String, String> obj = new TreeMap<String, String>();
+
             for (int j = 0; j <= this.getCantColumns(); j++) {
+                Cell cell = this.cells.get(i, j);
+                String value = cell.getStringValue();
+
+                if (this.cells.get(i, j).getType() == CellValueType.IS_NUMERIC) {
+                    value = Long.toString((long) cell.getDoubleValue());
+                }
+
                 obj.put(
-                    this.getHeaders().get(j),
-                    this.cells.get(i, j).getStringValue()
+                    this.headers.get(j),
+                    value
                 );
             }
             data.add(obj);
