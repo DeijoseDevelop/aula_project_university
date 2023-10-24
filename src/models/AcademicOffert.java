@@ -60,10 +60,10 @@ public class AcademicOffert {
     }
 
     public static AcademicOffert fromJson(Map<String, String> json) {
-        Constants constants = new Constants();
+        // Constants constants = new Constants();
         return new AcademicOffert(
             new AcademicProgram(json.get("academic_program")),
-            constants.getChift(json.get("shift")),
+            Constants.chifts.get(json.get("shift")),
             Short.parseShort(json.get("number_of_quotas")),
             new AcademicPeriod(
                 Byte.parseByte(json.get("academic_period_type")),

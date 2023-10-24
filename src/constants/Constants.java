@@ -4,40 +4,22 @@ import java.util.*;
 import src.enums.*;
 
 public class Constants {
-    public Map<String, CivilState> civilStates;
-    public Map<String, Shift> chifts;
 
-    public Constants() {
-        this.civilStates = this.getCivilStates();
-        this.chifts = this.getChifts();
-    }
+    public static String STUDENTS_FILE_PATH = "src/data/students.xlsx";
+    public static String ACADEMIC_OFFERTS_FILE_PATH = "src/data/academic_offert.xlsx";
+    public static String ACADEMIC_PROGRAMS_FILE_PATH = "src/data/academic_programs.xlsx";
+    public static String APPLICANTS_FILE_PATH = "src/data/applicants.xlsx";
 
-    private Map<String, CivilState> getCivilStates() {
-        Map<String, CivilState> civilStates = new TreeMap<String, CivilState>();
+    public static Map<String, CivilState> civilStates = Map.of(
+        "single", CivilState.SINGLE,
+        "married", CivilState.MARRIED,
+        "divorced", CivilState.DIVORCED,
+        "widower", CivilState.WIDOWER
+    );
 
-        civilStates.put("single", CivilState.SINGLE);
-        civilStates.put("married", CivilState.MARRIED);
-        civilStates.put("divorced", CivilState.DIVORCED);
-        civilStates.put("widower", CivilState.WIDOWER);
-
-        return civilStates;
-    }
-
-    private Map<String, Shift> getChifts() {
-        Map<String, Shift> shifts = new TreeMap<String, Shift>();
-
-        shifts.put("morning", Shift.MORNING);
-        shifts.put("afternoon", Shift.AFTERNOON);
-        shifts.put("night", Shift.NIGHT);
-
-        return shifts;
-    }
-
-    public CivilState getCivilState(String state) {
-        return this.civilStates.get(state);
-    }
-
-    public Shift getChift(String state) {
-        return this.chifts.get(state);
-    }
+    public static Map<String, Shift> chifts = Map.of(
+        "morning", Shift.MORNING,
+        "afternoon", Shift.AFTERNOON,
+        "night", Shift.NIGHT
+    );
 }

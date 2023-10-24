@@ -1,6 +1,8 @@
 package src.models;
 
 import java.time.Year;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class AcademicPeriod {
@@ -35,6 +37,14 @@ public class AcademicPeriod {
 
     public byte getType() {
         return this.type;
+    }
+
+    public static List<AcademicPeriod> fromJsonList(List<Map<String, String>> jsonList) {
+        List<AcademicPeriod> academicPeriods = new ArrayList<AcademicPeriod>();
+        for (Map<String, String> json : jsonList) {
+            academicPeriods.add(AcademicPeriod.fromJson(json));
+        }
+        return academicPeriods;
     }
 
     public static AcademicPeriod fromJson(Map<String, String> json) {

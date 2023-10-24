@@ -1,5 +1,7 @@
 package src.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import src.constants.Constants;
@@ -43,8 +45,15 @@ public class Applicant extends Person implements DataModel {
         this.inscriptionState = InscriptionState.APPLICANT;
     }
 
+    public static List<Applicant> fromJsonList(List<Map<String, String>> jsonList) {
+        List<Applicant> applicants = new ArrayList<Applicant>();
+        for (Map<String, String> json : jsonList) {
+            applicants.add(Applicant.fromJson(json));
+        }
+        return applicants;
+    }
+
     public static Applicant fromJson(Map<String, String> json) {
-        Constants constants = new Constants();
         return new Applicant(
             json.get("first_name"),
             json.get("last_name"),
@@ -52,7 +61,7 @@ public class Applicant extends Person implements DataModel {
             Long.parseLong(json.get("phone")),
             json.get("gender"),
             json.get("address"),
-            constants.getCivilState(json.get("civil_state")),
+            Constants.civilStates.get(json.get("civil_state")),
             json.get("type_document"),
             Long.parseLong(json.get("document_number")),
             json.get("eps")

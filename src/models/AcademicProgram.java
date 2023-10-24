@@ -1,5 +1,7 @@
 package src.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import src.interfaces.DataModel;
@@ -24,6 +26,14 @@ public class AcademicProgram implements DataModel{
 
     public String getName() {
         return this.name;
+    }
+
+    public static List<AcademicProgram> fromJsonList(List<Map<String, String>> jsonList) {
+        List<AcademicProgram> academicPrograms = new ArrayList<AcademicProgram>();
+        for (Map<String, String> json : jsonList) {
+            academicPrograms.add(AcademicProgram.fromJson(json));
+        }
+        return academicPrograms;
     }
 
     public static AcademicProgram fromJson(Map<String, String> json) {

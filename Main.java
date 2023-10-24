@@ -7,15 +7,12 @@ import src.utils.ExcelWriter;
 public class Main {
     public static void main(String[] args) {
         List<AcademicOffert> academicOffert = new ArrayList<AcademicOffert>();
-        List<Student> students = new ArrayList<Student>();
         ExcelReader excelReaderStudents = new ExcelReader("src/data/students.xlsx");
         ExcelReader excelReaderOffert = new ExcelReader("src/data/academic_offert.xlsx");
 
-        System.out.println("");
+        List<Student> students = Student.fromJsonList(excelReaderStudents.getJsonData());
 
-        for (Map<String, String> json : excelReaderStudents.getJsonData()) {
-            students.add(Student.fromJson(json));
-        }
+        System.out.println("");
 
         System.out.println(students);
 
