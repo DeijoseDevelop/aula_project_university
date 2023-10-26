@@ -68,6 +68,19 @@ public class Applicant extends Person implements DataModel {
         );
     }
 
+    public static Applicant getObj(List<Applicant> data, int id) throws Exception {
+        Applicant selectedApplicant = null;
+        for (Applicant applicant : data) {
+            if (applicant.getId() == id) selectedApplicant = applicant;
+        }
+
+        if (selectedApplicant == null) {
+            throw new Exception("There is no such applicant.");
+        }
+
+        return selectedApplicant;
+    }
+
     @Override
     public String toString() {
         return String.format("Applicant(name=%s)", this.getFullName());

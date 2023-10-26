@@ -45,11 +45,6 @@ public class Student extends Person implements DataModel {
         this.inscriptionState = InscriptionState.ADMITTED;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Student(name=%s)", this.getFullName());
-    }
-
     public static List<Student> fromJsonList(List<Map<String, String>> jsonList) {
         List<Student> students = new ArrayList<Student>();
         for (Map<String, String> json : jsonList) {
@@ -71,5 +66,23 @@ public class Student extends Person implements DataModel {
             Long.parseLong(json.get("document_number")),
             json.get("eps")
         );
+    }
+
+    public static Student getObj(List<Student> data, int id) throws Exception {
+        Student selectedStudent = null;
+        for (Student student : data) {
+            if (student.getId() == id) selectedStudent = student;
+        }
+
+        if (selectedStudent == null) {
+            throw new Exception("There is no such student.");
+        }
+
+        return selectedStudent;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Student(name=%s)", this.getFullName());
     }
 }

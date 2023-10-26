@@ -1,21 +1,25 @@
 package src.interfaces;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import src.models.Student;
+import src.utils.DataFilter;
+
 
 public interface DataModel {
-    public static DataModel fromJson(Map<String, String> json) {
+
+    public int getId();
+
+    public static DataModel fromJson(
+        Map<String, String> json,
+        DataFilter dataFilter
+    ) {
         return null;
     }
 
-    public static List<DataModel> fromJsonList(List<Map<String, String>> jsonList) {
-        List<DataModel> objModels = new ArrayList<DataModel>();
-        for (Map<String, String> json : jsonList) {
-            objModels.add(Student.fromJson(json));
-        }
-        return objModels;
+    public static List<DataModel> fromJsonList(
+        List<Map<String, String>> jsonList,
+        DataFilter dataFilter
+    ) {
+        return null;
     }
 }

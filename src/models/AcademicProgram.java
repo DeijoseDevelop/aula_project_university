@@ -10,6 +10,7 @@ public class AcademicProgram implements DataModel{
     private static int countAcademicPrograms;
     private int id;
     private String name;
+    private AcademicOffert academicOffert;
 
     public AcademicProgram() {
         this.id = ++AcademicProgram.countAcademicPrograms;
@@ -28,6 +29,10 @@ public class AcademicProgram implements DataModel{
         return this.name;
     }
 
+    public AcademicOffert getAcademicOffert() {
+        return academicOffert;
+    }
+
     public static List<AcademicProgram> fromJsonList(List<Map<String, String>> jsonList) {
         List<AcademicProgram> academicPrograms = new ArrayList<AcademicProgram>();
         for (Map<String, String> json : jsonList) {
@@ -40,6 +45,23 @@ public class AcademicProgram implements DataModel{
         return new AcademicProgram(
             json.get("name")
         );
+    }
+
+    public static AcademicProgram getObj(List<AcademicProgram> data, int id) throws Exception {
+        AcademicProgram selectedAcademicProgram = null;
+        for (AcademicProgram academicProgram : data) {
+            if (academicProgram.getId() == id) selectedAcademicProgram = academicProgram;
+        }
+
+        if (selectedAcademicProgram == null) {
+            throw new Exception("There is no such academic program.");
+        }
+
+        return selectedAcademicProgram;
+    }
+
+    public void setAcademicOffert(AcademicOffert academicOffert) {
+        this.academicOffert = academicOffert;
     }
 
     @Override
