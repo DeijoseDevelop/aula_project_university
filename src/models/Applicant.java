@@ -27,6 +27,7 @@ public class Applicant extends Person implements DataModel {
         CivilState civilState,
         String typeDocument,
         Long documentNumber,
+        boolean isBachiller,
         String nameEPS
     ) {
         super(
@@ -39,6 +40,7 @@ public class Applicant extends Person implements DataModel {
             civilState,
             typeDocument,
             documentNumber,
+            isBachiller,
             nameEPS
         );
         this.id = ++Applicant.countApplicant;
@@ -64,12 +66,14 @@ public class Applicant extends Person implements DataModel {
             Constants.civilStates.get(json.get("civil_state")),
             json.get("type_document"),
             Long.parseLong(json.get("document_number")),
+            Boolean.parseBoolean(json.get("isBachiller")),
             json.get("eps")
         );
     }
 
     public static Applicant getObj(List<Applicant> data, int id) throws Exception {
         Applicant selectedApplicant = null;
+
         for (Applicant applicant : data) {
             if (applicant.getId() == id) selectedApplicant = applicant;
         }

@@ -1,7 +1,6 @@
 package src.interfaces;
 
 import src.enums.*;
-import src.models.AcademicProgram;
 
 public abstract class Person {
     protected int id;
@@ -15,8 +14,8 @@ public abstract class Person {
     protected CivilState civilState;
     protected String typeDocument;
     protected Long documentNumber;
+    protected boolean isBachiller;
     protected String nameEPS;
-    protected AcademicProgram program;
 
     public Person() {}
 
@@ -30,6 +29,7 @@ public abstract class Person {
         CivilState civilState,
         String typeDocument,
         Long documentNumber,
+        boolean isBachiller,
         String nameEPS
     ) {
         this.firstName = firstName;
@@ -41,6 +41,7 @@ public abstract class Person {
         this.civilState = civilState;
         this.typeDocument = typeDocument;
         this.documentNumber = documentNumber;
+        this.isBachiller = isBachiller;
         this.nameEPS = nameEPS;
     }
 
@@ -94,14 +95,6 @@ public abstract class Person {
 
     public String getNameEPS() {
         return this.nameEPS;
-    }
-
-    public AcademicProgram getProgram() {
-        return this.program;
-    }
-
-    public void setProgram(AcademicProgram program) {
-        this.program = program;
     }
 
     public void setInscriptionState(InscriptionState inscriptionState) {
