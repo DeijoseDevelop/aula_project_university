@@ -1,12 +1,16 @@
 package src.models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import src.constants.Constants;
 import src.enums.CivilState;
+import src.enums.Gender;
 import src.enums.InscriptionState;
+import src.enums.TypeDocument;
 import src.interfaces.DataModel;
 import src.interfaces.Person;
 
@@ -22,10 +26,10 @@ public class Student extends Person implements DataModel {
         String lastName,
         String email,
         Long phoneNumber,
-        String gender,
+        Gender gender,
         String address,
         CivilState civilState,
-        String typeDocument,
+        TypeDocument typeDocument,
         Long documentNumber,
         boolean isBachiller,
         String nameEPS
@@ -47,6 +51,37 @@ public class Student extends Person implements DataModel {
         this.inscriptionState = InscriptionState.ADMITTED;
     }
 
+    public Student(
+        String firstName,
+        String lastName,
+        InscriptionState inscriptionState,
+        String email,
+        Long phoneNumber,
+        Gender gender,
+        String address,
+        CivilState civilState,
+        TypeDocument typeDocument,
+        Long documentNumber,
+        boolean isBachiller,
+        String nameEPS
+    ) {
+        super(
+            firstName,
+            lastName,
+            email,
+            phoneNumber,
+            gender,
+            address,
+            civilState,
+            typeDocument,
+            documentNumber,
+            isBachiller,
+            nameEPS
+        );
+        this.id = ++Student.countStudent;
+        this.inscriptionState = inscriptionState;
+    }
+
     public static List<Student> fromJsonList(List<Map<String, String>> jsonList) {
         List<Student> students = new ArrayList<Student>();
         for (Map<String, String> json : jsonList) {
@@ -59,14 +94,15 @@ public class Student extends Person implements DataModel {
         return new Student(
             json.get("first_name"),
             json.get("last_name"),
+            InscriptionState.ENROLLED,
             json.get("email"),
             Long.parseLong(json.get("phone")),
-            json.get("gender"),
+            Constants.genders.get(json.get("gender")),
             json.get("address"),
             Constants.civilStates.get(json.get("civil_state")),
-            json.get("type_document"),
+            Constants.typeDocuments.get(json.get("type_document")),
             Long.parseLong(json.get("document_number")),
-            Boolean.parseBoolean(json.get("isBachiller")),
+            Boolean.parseBoolean(json.get("is_bachiller")),
             json.get("eps")
         );
     }
@@ -82,6 +118,25 @@ public class Student extends Person implements DataModel {
         }
 
         return selectedStudent;
+    }
+
+    @Override
+    public Map<String, String> toJson(){
+        Map<String, String> json = new TreeMap<String, String>();
+
+        json.put("first_name", this.firstName);
+        json.put("last_name", this.lastName);
+        json.put("email", this.email);
+        json.put("phone", this.phoneNumber.toString());
+        json.put("gender", Constants.gendersInverse.get(this.gender));
+        json.put("address", this.address);
+        json.put("civil_state", Constants.civilStatesInverse.get(this.civilState));
+        json.put("type_document", Constants.typeDocumentsInverse.get(this.typeDocument));
+        json.put("document_number", this.documentNumber.toString());
+        json.put("is_bachiller", String.valueOf(this.isBachiller));
+        json.put("eps", this.nameEPS);
+
+        return json;
     }
 
     @Override

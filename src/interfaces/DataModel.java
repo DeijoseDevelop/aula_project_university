@@ -22,4 +22,6 @@ public interface DataModel {
     ) {
         return null;
     }
+
+    public Map<String, String> toJson();
 }

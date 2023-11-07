@@ -1,6 +1,7 @@
 package src.models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -102,6 +103,13 @@ public class AcademicOffert implements DataModel {
         }
 
         return selectedAcademicOffert;
+    }
+
+    @Override
+    public Map<String, String> toJson(){
+        Map<String, String> json = new HashMap<String, String>();
+
+        return json;
     }
 
     @Override

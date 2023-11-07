@@ -9,10 +9,10 @@ public abstract class Person {
     protected InscriptionState inscriptionState;
     protected String email;
     protected Long phoneNumber;
-    protected String gender;
+    protected Gender gender;
     protected String address;
     protected CivilState civilState;
-    protected String typeDocument;
+    protected TypeDocument typeDocument;
     protected Long documentNumber;
     protected boolean isBachiller;
     protected String nameEPS;
@@ -24,10 +24,10 @@ public abstract class Person {
         String lastName,
         String email,
         Long phoneNumber,
-        String gender,
+        Gender gender,
         String address,
         CivilState civilState,
-        String typeDocument,
+        TypeDocument typeDocument,
         Long documentNumber,
         boolean isBachiller,
         String nameEPS
@@ -61,7 +61,7 @@ public abstract class Person {
         return String.format("%s %s", this.firstName, this.lastName);
     }
 
-    public InscriptionState getStudentState() {
+    public InscriptionState gInscriptionState() {
         return this.inscriptionState;
     }
 
@@ -73,7 +73,7 @@ public abstract class Person {
         return this.phoneNumber;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return this.gender;
     }
 
@@ -85,12 +85,16 @@ public abstract class Person {
         return this.civilState;
     }
 
-    public String getTypeDocument() {
+    public TypeDocument getTypeDocument() {
         return this.typeDocument;
     }
 
     public Long getDocumentNumber() {
         return this.documentNumber;
+    }
+
+    public boolean isBachiller() {
+        return isBachiller;
     }
 
     public String getNameEPS() {

@@ -2,6 +2,7 @@ package src.models;
 
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -88,6 +89,13 @@ public class AcademicPeriod implements DataModel {
         }
 
         return selectedAcademicPeriod;
+    }
+
+    @Override
+    public Map<String, String> toJson(){
+        Map<String, String> json = new HashMap<String, String>();
+
+        return json;
     }
 
     @Override
