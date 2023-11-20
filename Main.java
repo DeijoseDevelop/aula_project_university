@@ -19,24 +19,24 @@ public class Main {
         DataFilter dataFilter = new DataFilter();
 
         //? Applicants
-        ExcelReader excelReaderApplicants = new ExcelReader("src/data/applicants.xlsx");
+        // ExcelReader excelReaderApplicants = new ExcelReader("src/data/applicants.xlsx");
         ExcelWriter excelWriterApplicants = new ExcelWriter("src/data/applicants.xlsx");
 
         //? Students
-        ExcelReader excelReaderStudents = new ExcelReader("src/data/students.xlsx");
+        // ExcelReader excelReaderStudents = new ExcelReader("src/data/students.xlsx");
         ExcelWriter excelWriterStudents = new ExcelWriter("src/data/students.xlsx");
 
         //? Periods
         ExcelReader excelReaderPrograms = new ExcelReader("src/data/academic_programs.xlsx");
-        ExcelWriter excelWriterPrograms = new ExcelWriter("src/data/academic_programs.xlsx");
+        // ExcelWriter excelWriterPrograms = new ExcelWriter("src/data/academic_programs.xlsx");
 
         //? Periods
         ExcelReader excelReaderPeriods = new ExcelReader("src/data/academic_period.xlsx");
-        ExcelWriter excelWriterPeriods = new ExcelWriter("src/data/academic_period.xlsx");
+        // ExcelWriter excelWriterPeriods = new ExcelWriter("src/data/academic_period.xlsx");
 
         //? Offerts
         ExcelReader excelReaderOfferts = new ExcelReader("src/data/academic_offert.xlsx");
-        ExcelWriter excelWriterOfferts = new ExcelWriter("src/data/academic_offert.xlsx");
+        // ExcelWriter excelWriterOfferts = new ExcelWriter("src/data/academic_offert.xlsx");
 
         List<AcademicProgram> academicPrograms = AcademicProgram.fromJsonList(
             excelReaderPrograms.getJsonData()
