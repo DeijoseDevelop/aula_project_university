@@ -2,14 +2,9 @@ import java.io.IOException;
 import java.util.*;
 
 import src.constants.Constants;
-import src.enums.CivilState;
-import src.enums.Gender;
-import src.enums.InscriptionState;
-import src.enums.TypeDocument;
+import src.enums.*;
 import src.models.*;
-import src.utils.DataFilter;
-import src.utils.ExcelReader;
-import src.utils.ExcelWriter;
+import src.utils.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {

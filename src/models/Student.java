@@ -1,18 +1,10 @@
 package src.models;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import src.constants.Constants;
-import src.enums.CivilState;
-import src.enums.Gender;
-import src.enums.InscriptionState;
-import src.enums.TypeDocument;
-import src.interfaces.DataModel;
-import src.interfaces.Person;
+import src.enums.*;
+import src.interfaces.*;
 
 public class Student extends Person implements DataModel {
     private static int countStudent;
